@@ -3,9 +3,11 @@
 # Install Python dependencies
 pip install -r requirements.txt
 
-# Download the dataset
-mkdir -p /var/app/datasets
-wget -O /var/app/datasets/psgs_w100.tsv.pkl https://storage.googleapis.com/huggingface-nlp/datasets/wiki_dpr/psgs_w100.tsv.pkl
+# Create a writable directory for datasets
+mkdir -p /opt/render/datasets
 
-# Set up environment variables (if needed)
-export DATASET_PATH=/var/app/datasets/psgs_w100.tsv.pkl
+# Download the dataset to the writable directory
+wget -O /opt/render/datasets/psgs_w100.tsv.pkl https://storage.googleapis.com/huggingface-nlp/datasets/wiki_dpr/psgs_w100.tsv.pkl
+
+# Set up environment variables
+export DATASET_PATH=/opt/render/datasets/psgs_w100.tsv.pkl
