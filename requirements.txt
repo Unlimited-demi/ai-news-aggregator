@@ -3,5 +3,5 @@ flask-cors
 requests
 python-dotenv
 transformers
-pytorch
+torch
 datasets
