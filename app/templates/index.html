@@ -1,0 +1,17 @@
+<!-- app/templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI News Aggregator and Fact-Checker</title>
+</head>
+<body>
+    <h1>Welcome to the AI News Aggregator and Fact-Checker</h1>
+    <form action="{{ url_for('main.results') }}" method="POST">
+        <label for="url">Enter news article URL:</label>
+        <input type="text" id="url" name="url" required>
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+    <a href="{{ url_for('main.news') }}">View Aggregated News</a>
+</body>
+</html>

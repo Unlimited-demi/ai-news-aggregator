@@ -1,8 +1,8 @@
-flask
 flask-cors
-requests
-python-dotenv
+flask
 transformers
-torch
+pandas
+beautifulsoup4
+requests
 datasets
-faiss
+gunicorn
