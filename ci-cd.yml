@@ -1,0 +1,44 @@
+# .github/workflows/ci-cd.yml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r requirements.txt
+
+    - name: Lint with flake8
+      run: |
+        pip install flake8
+        flake8 .
+
+    - name: Build Docker image
+      run: |
+        docker build -t ai-news-aggregator-fact-checker .
+
+    - name: Push to Docker Hub
+      run: |
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        docker tag ai-news-aggregator-fact-checker ${{ secrets.DOCKER_USERNAME }}/ai-news-aggregator-fact-checker
+        docker push ${{ secrets.DOCKER_USERNAME }}/ai-news-aggregator-fact-checker
