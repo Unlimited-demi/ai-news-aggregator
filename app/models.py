@@ -4,7 +4,7 @@ from datasets import load_dataset
 from transformers import RagRetriever, RagTokenizer, RagTokenForGeneration
 
 # Load the dataset directly from Hugging Face
-dataset = load_dataset("wiki_dpr", "psgs_w100.nq.exact", split="train")
+dataset = load_dataset("wiki_dpr", "psgs_w100.nq.exact", split="train",  trust_remote_code=True)
 
 # Initialize the retriever
 retriever = RagRetriever.from_pretrained(
